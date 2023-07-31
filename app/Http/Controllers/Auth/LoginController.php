@@ -44,7 +44,6 @@ class LoginController extends Controller
         // Generate JWT token and refresh token
         $accessToken = JWTAuth::fromUser($user);
 
-
         // Return the formatted response using the UserResource
         $data = ([
             'user' => new UserResource($user),

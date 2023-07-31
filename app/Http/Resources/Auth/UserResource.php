@@ -17,6 +17,17 @@ class UserResource extends JsonResource
         return [
             'id' => $this->user_id,
             'email' => $this->email,
+            'role_id' => $this->accessRole->id,
+            'role' => $this->accessRole->role,
+            'weight' => $this->accessRole->weight,
+            'access' => $this->accessRole->access,
+            'name' => $this->accessUser->name,
+            'picture' => $this->accessUser->picture,
+            'gender' => $this->accessUser->gender,
+            'phone' => $this->accessUser->phone,
+            'institusion' => $this->accessUser->institusion,
+            'instagram' => $this->accessUser->instagram,
+            'tiktok' => $this->accessUser->tiktok,
             // Add other user data you want to include in the response
         ];
     }
