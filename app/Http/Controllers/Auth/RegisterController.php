@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Auth\AccountModel;
 use App\Models\Auth\AccessUser;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class RegisterController extends Controller
 {
@@ -21,12 +22,6 @@ class RegisterController extends Controller
 
     public function register(RegisterUserRequest $request)
     {
-        // Check if the email already exists in access_auth table
-        $existingUser = AccountModel::where('email', $request->email)->first();
-        if ($existingUser) {
-            return response()->error('Email already exists', 409);
-        }
-
         // Create the user in access_auth table
         $user = new AccountModel([
             'program_id' => $request->header('Program_id'),
@@ -56,6 +51,15 @@ class RegisterController extends Controller
         // Assuming the 'is_participant', 'referral_code', 'partner_code', and 'is_google'
         // columns are also saved to the access_auth table, you can set them as needed
         $dataUser = $this->accountModel->getByEmail($request->email);
-        return response()->success(new UserResource($dataUser), 201, 'User registered successfully');
+
+        // Generate JWT token and refresh token
+        $accessToken = JWTAuth::fromUser($dataUser);
+
+        // Return the formatted response using the UserResource
+        $data = ([
+            'user' => new UserResource($user),
+            'access_token' => $accessToken
+        ]);
+        return response()->success($data, 201, 'User registered successfully');
     }
 }

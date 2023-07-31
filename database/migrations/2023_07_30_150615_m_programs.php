@@ -20,6 +20,7 @@ class MPrograms extends Migration
             $table->string('title', 100)->nullable();
             $table->string('icon', 255)->nullable();
             $table->string('logo', 255)->nullable();
+            $table->string('logo_white', 255)->nullable();
             $table->text('description')->nullable();
             $table->text('address')->nullable();
             $table->string('phone', 20)->nullable();

@@ -22,7 +22,6 @@ class RegisterUserRequest extends FormRequest
             'email' => 'required|string|email|unique:access_auth,email',
             'password' => 'required|string|min:8',
             'is_participant' => 'boolean',
-            'referral_code' => 'string|max:10|nullable',
             'partner_code' => 'string|max:255|nullable',
             'is_google' => 'boolean',
         ];
@@ -41,9 +40,6 @@ class RegisterUserRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         $this->validator = $validator;
-        throw new HttpResponseException(response()->json([
-            'message' => 'Validation failed',
-            'errors' => $validator->errors(),
-        ], 422));
+        throw new HttpResponseException(response()->error('Email already exists', 409));
     }
 }

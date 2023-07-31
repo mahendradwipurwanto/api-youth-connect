@@ -37,13 +37,14 @@ class TbParticipants extends Migration
             $table->text('disease_history')->nullable();
             $table->string('tshirt_size', 10)->nullable();
             $table->text('experience')->nullable();
-            $table->text('achivements')->nullable();
-            $table->text('social_project')->nullable();
+            $table->text('achievements')->nullable();
+            $table->text('social_projects')->nullable();
             $table->text('talents')->nullable();
             $table->string('source', 100)->nullable();
-            $table->string('twibon_link', 100)->nullable();
-            $table->string('share_proff_link', 100)->nullable();
+            $table->string('twibbon_link', 100)->nullable();
+            $table->string('share_proof_link', 100)->nullable();
             $table->boolean('terms_condition')->default(false)->nullable();
+            $table->boolean('is_payment')->default(false)->nullable();
             $table->integer('status')->default(0)->nullable()->comment('0: unverified, 1: verified, 2: rejected');
 
             $table->timestamps(); // Adds 'created_at' and 'updated_at' columns (timestamp data type)

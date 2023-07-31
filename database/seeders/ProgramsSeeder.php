@@ -22,6 +22,7 @@ class ProgramsSeeder extends Seeder
                 'title' => 'IYS 2023',
                 'icon' => 'assets/images/icon.png',
                 'logo' => 'assets/images/logo.png',
+                'logo_white' => 'assets/images/logo-white.png',
                 'description' => 'IYS 2023',
                 'address' => 'Istanbul',
                 'phone' => '1234567890',
